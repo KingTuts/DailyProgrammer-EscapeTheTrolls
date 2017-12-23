@@ -1,16 +1,19 @@
+import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
+// import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  * Helper
  */
-public static final class Helper {
-    private Helper(){}
+public final class Helper {
+    private Helper() {
+    }
 
     /**
-     * Assumes the 
+     * Assumes the string works and everything
     */
-    public static String ReadTextFile(String filePath) {
-        return new String(Files.readAllBytes(new Path(filePath)));
+    public static String ReadTextFile(String filePath) throws IOException {
+        return new String(Files.readAllBytes(Paths.get(filePath)));        
     }
 }

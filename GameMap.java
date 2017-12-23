@@ -1,9 +1,4 @@
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.List;
+import java.io.IOException;
 
 /**
  * GameMap
@@ -11,11 +6,16 @@ import java.util.List;
 public class GameMap {
     private String mapString;
 
-    public GameMap(String mapFilePath){
-        this.mapString = GetMapString(mapFilePath)
+    public GameMap(String mapFilePath) throws IOException {
+        this.mapString = GetMapString(mapFilePath);
     }
 
-    private static String GetMapString(String mapPath) {
+    public String getMapString() {
+        return this.mapString;
+    }
+
+    private static String GetMapString(String mapPath) throws IOException {
         return Helper.ReadTextFile(mapPath);
     }
+
 }
