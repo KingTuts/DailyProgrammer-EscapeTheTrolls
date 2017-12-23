@@ -8,10 +8,12 @@ public class EscapeTheTrolls {
     public static void main(String[] args) {
         final String mapPathString = "res/maps/map.txt";
         GameMap gameMap;
+        TextDisplay display = new TextDisplay();
+
         
         try {
             gameMap = new GameMap(mapPathString);
-            System.out.println(gameMap.getMapString());
+            display.DisplayText(gameMap.MapString());
         } catch (IOException e) {
             System.out.println("Issue with map string:\n\t" + mapPathString);
         }

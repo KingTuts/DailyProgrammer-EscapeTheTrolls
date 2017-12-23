@@ -9,13 +9,14 @@ public class GameMap {
     public GameMap(String mapFilePath) throws IOException {
         this.mapString = GetMapString(mapFilePath);
     }
-
-    public String getMapString() {
+    /**
+     * Returns string representation of map
+     */
+    public String MapString() {
         return this.mapString;
     }
 
     private static String GetMapString(String mapPath) throws IOException {
         return Helper.ReadTextFile(mapPath);
     }
-
 }

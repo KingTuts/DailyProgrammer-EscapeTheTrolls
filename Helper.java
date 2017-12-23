@@ -1,6 +1,6 @@
 import java.io.IOException;
 import java.nio.file.Files;
-// import java.nio.file.Path;
+
 import java.nio.file.Paths;
 
 /**
@@ -12,8 +12,10 @@ public final class Helper {
 
     /**
      * Assumes the string works and everything
+     * 
+     * Based on http://javarevisited.blogspot.co.uk/2015/02/how-to-read-file-in-one-line-java-8.html
     */
     public static String ReadTextFile(String filePath) throws IOException {
-        return new String(Files.readAllBytes(Paths.get(filePath)));        
+        return new String(Files.readAllBytes(Paths.get(filePath)));
     }
 }
