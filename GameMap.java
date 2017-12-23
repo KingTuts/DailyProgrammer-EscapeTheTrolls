@@ -6,7 +6,7 @@ import java.io.IOException;
 public class GameMap {
     private String mapString;
 
-    public  GameMap(String mapPathString) {
+    public  GameMap(String mapPathString) throws IOException{
         this.mapString = GetMapString(mapPathString);
     }
 
