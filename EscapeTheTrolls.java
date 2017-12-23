@@ -4,7 +4,11 @@ import java.io.IOException;
  * EscapeTheTrolls
  */
 public class EscapeTheTrolls {
+    public String FullClassName() {
+        return this.getClass().getCanonicalName();
+    }
 
+   
     public static void main(String[] args) {
         final String mapPathString = "res/maps/map.txt";
         GameMap gameMap;

@@ -19,4 +19,6 @@ public class GameMap {
     private static String GetMapString(String mapPath) throws IOException {
         return Helper.ReadTextFile(mapPath);
     }
+
+    
 }
