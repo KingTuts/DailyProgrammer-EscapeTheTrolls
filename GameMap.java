@@ -6,9 +6,10 @@ import java.io.IOException;
 public class GameMap {
     private String mapString;
 
-    public GameMap(String mapFilePath) throws IOException {
-        this.mapString = GetMapString(mapFilePath);
+    public  GameMap(String mapPathString) {
+        this.mapString = GetMapString(mapPathString);
     }
+
     /**
      * Returns string representation of map
      */
