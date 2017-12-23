@@ -5,6 +5,7 @@ import java.io.IOException;
  */
 public class GameMap {
     private String mapString;
+    final private int ColummWidth = 4;
 
     public GameMap(String mapFilePath) throws IOException {
         this.mapString = GetMapString(mapFilePath);
