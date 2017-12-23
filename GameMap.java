@@ -9,14 +9,13 @@ import java.util.List;
  * GameMap
  */
 public class GameMap {
-    private String mapFilePath;
     private String mapString;
 
     public GameMap(String mapFilePath){
-        this.mapFilePath = mapFilePath;
+        this.mapString = GetMapString(mapFilePath)
     }
 
-    private static String GetMapString(String mapPathString) {
-        return Helper.ReadTextFile(mapPathString);
+    private static String GetMapString(String mapPath) {
+        return Helper.ReadTextFile(mapPath);
     }
 }
