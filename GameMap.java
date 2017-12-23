@@ -6,6 +6,7 @@ import java.io.IOException;
 public class GameMap {
     private String mapString;
     final private int ColummWidth = 4;
+    final private String newln = "\n";
 
     public GameMap(String mapFilePath) throws IOException {
         this.mapString = GetMapString(mapFilePath);
@@ -21,5 +22,11 @@ public class GameMap {
         return Helper.ReadTextFile(mapPath);
     }
 
+    public int Rows() {
+       return 0; 
+    }
     
+    public enum BlockType{
+        WALL, CORRIDOR
+    }
 }
