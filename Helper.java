@@ -18,4 +18,9 @@ public final class Helper {
     public static String ReadTextFile(String filePath) throws IOException {
         return new String(Files.readAllBytes(Paths.get(filePath)));
     }
+
+
+    public enum Direction{
+        UP,DOWN,LEFT,RIGHT
+    }
 }
