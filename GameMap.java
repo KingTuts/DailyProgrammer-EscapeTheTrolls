@@ -33,8 +33,6 @@ public class GameMap {
         return this.map[0].length;
     }
 
-    
-
     private static String GetMapString(String mapPath) throws IOException {
         return Helper.ReadTextFile(mapPath);
     }
