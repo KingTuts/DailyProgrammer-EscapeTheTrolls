@@ -1,13 +1,13 @@
 /**
  * PlayerTextSprite implements Te
  */
-public class PlayerTextSprite implements TextSprite {
+public class TextSpritePlayer implements TextSprite {
     private char upChar, downChar, leftChar, rightChar;
     private Helper.Direction direction;
     private Position position;
     private GameMap  gameMap;
 
-    public PlayerTextSprite(Position startPosition, GameMap gameMap, char upChar, char downChar, char leftChar, char rightChar) {
+    public TextSpritePlayer(Position startPosition, GameMap gameMap, char upChar, char downChar, char leftChar, char rightChar) {
         this.position = startPosition;
 
         this.gameMap = gameMap;

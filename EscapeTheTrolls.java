@@ -27,7 +27,7 @@ public class EscapeTheTrolls {
     public static SpriteController[] generateSpriteControllers(int numTrolls) {
         SpriteController[] sControllers = new SpriteController[1];
 
-        sControllers[0] = new SpriteControllerPlayer(new PlayerTextSprite(startPosition, gameMap, upChar, downChar, leftChar, rightChar));
+        sControllers[0] = new SpriteControllerPlayer(new TextSpritePlayer(startPosition, gameMap, upChar, downChar, leftChar, rightChar));
 
 
         return sControllers;
