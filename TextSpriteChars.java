@@ -27,7 +27,7 @@ public class  TextSpriteChars {
         return this.right;
     }
 
-    public char Char(Helper.Direction direction){
+    public char CharFromDirection(Helper.Direction direction){
 
         switch (direction) {
             case UP:

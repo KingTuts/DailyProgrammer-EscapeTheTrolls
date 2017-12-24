@@ -53,7 +53,7 @@ public class TextSpritePlayer implements TextSprite {
 
     @Override
     public char AsChar() {
-        return this.chars.Char(this.direction);
+        return this.chars.CharFromDirection(this.direction);
     }
 
 
