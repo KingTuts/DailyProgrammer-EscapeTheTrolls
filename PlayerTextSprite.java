@@ -34,7 +34,7 @@ public class PlayerTextSprite implements TextSprite {
 
     @Override
     public void Advance() {
-        
+        Helper.
     }
 
     @Override

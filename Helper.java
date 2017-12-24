@@ -20,6 +20,28 @@ public final class Helper {
     }
 
 
+    public Position CalcNewPosition(Position oldPosition, Direction direction){
+        int x = oldPosition.X();
+        int y = oldPosition.Y();
+
+        switch (direction) { //top-left corner is 0,0. Y increases as you go down, x increases as you go right
+            case UP:
+                y--;
+                break;
+            case DOWN:
+                y++;
+                break;
+            case LEFT:
+                x--;
+                break;
+            case RIGHT:
+                x++;
+             break;
+        }
+
+        return new Position(x, y);
+    }
+
     public enum Direction{
         UP,DOWN,LEFT,RIGHT
     }
