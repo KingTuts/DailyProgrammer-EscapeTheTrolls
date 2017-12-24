@@ -16,7 +16,7 @@ public class  TextSpriteChars {
     }
 
     public char Down() {
-        return this.Down();
+        return this.down;
     }
 
     public char Left(){
@@ -25,6 +25,22 @@ public class  TextSpriteChars {
 
     public char Right(){
         return this.right;
+    }
+
+    public char Char(Helper.Direction direction){
+
+        switch (direction) {
+            case UP:
+                return up;
+            case DOWN:
+                return down;
+            case LEFT:
+                return left;
+            case RIGHT:
+                return right;
+            default:
+                return up;
+        }
     }
 
 }
