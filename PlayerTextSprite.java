@@ -36,9 +36,10 @@ public class PlayerTextSprite implements TextSprite {
     }
 
     @Override
-    public void Advance() {
+    public void Advance(Helper.Direction direction) {
         final String invalidMoveMsg = "Cannot move " + this.direction.toString();
 
+        SetDirection(direction);
 
         Position newPosition = Helper.CalcNewPosition(this.position, this.direction);      
 
