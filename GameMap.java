@@ -5,14 +5,9 @@ import java.io.IOException;
  */
 public class GameMap {
     private String mapString;
-<<<<<<< HEAD
-    final private int ColummWidth = 4;
-    final private String newln = "\n";
-=======
     public static final char corridorChar = ' ';
     public static final char wallChar = '#';
     private char[][] map;
->>>>>>> Generate-GameMap-Array
 
     public GameMap(String mapFilePath) throws IOException, Exception {
         this.mapString = GetMapString(mapFilePath);
