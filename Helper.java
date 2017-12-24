@@ -42,6 +42,42 @@ public final class Helper {
         return new Position(x, y);
     }
 
+    public static boolean PositionIn2DArray(char[][] array2D, Position position) {
+        int row = position.Y();
+        int col = position.X();
+
+        if (row < 0) {
+            return false;
+        }
+        if (row >= array2D.length) {
+            return false;
+        }
+
+        if (col < 0) {
+            return false;
+        }
+        if (col >= array2D[0].length) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Will modify charArr2D
+     * Assumes pos.Y() is row and pos.X() is column in 2D array.
+     */
+
+    public static char[][] OverwriteCharArray2D(char[][] charArr2D, Position pos, char c) throws Exception{
+        if (PositionIn2DArray(charArr2D, pos)) {
+            throw new Exception("pos out of bounds for charArr2D");
+        }
+
+        charArr2D[pos.Y()][pos.X()] = c;
+        
+        return charArr2D;   
+    }
+    
     public enum Direction{
         UP,DOWN,LEFT,RIGHT
     }

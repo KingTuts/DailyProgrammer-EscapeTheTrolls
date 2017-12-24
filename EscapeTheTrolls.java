@@ -4,8 +4,10 @@ import java.io.IOException;
  * EscapeTheTrolls
  */
 public class EscapeTheTrolls {
-    public static void GameRunner(GameMap gameMap, ) {
-        
+    public static void GameRunner(TextDisplay display, GameMap gameMap, SpriteController[] sControllers) {
+        while (true) {
+            
+        }
     }
    
     public static void main(String[] args) {
