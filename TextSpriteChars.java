@@ -1,0 +1,7 @@
+/**
+ *  TextSpriteChars
+ */
+public class  TextSpriteChars {
+
+    
+}
