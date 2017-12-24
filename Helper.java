@@ -20,7 +20,7 @@ public final class Helper {
     }
 
 
-    public Position CalcNewPosition(Position oldPosition, Direction direction){
+    public static Position CalcNewPosition(Position oldPosition, Direction direction){
         int x = oldPosition.X();
         int y = oldPosition.Y();
 
