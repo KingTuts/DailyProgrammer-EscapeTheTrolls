@@ -2,21 +2,16 @@
  * PlayerTextSprite implements Te
  */
 public class TextSpritePlayer implements TextSprite {
-    private char upChar, downChar, leftChar, rightChar;
+    // private char upChar, downChar, leftChar, rightChar;
+    private TextSpriteChars chars;
     private Helper.Direction direction;
     private Position position;
     private GameMap  gameMap;
 
-    public TextSpritePlayer(Position startPosition, GameMap gameMap, char upChar, char downChar, char leftChar, char rightChar) {
+    public TextSpritePlayer(Position startPosition, GameMap gameMap,TextSpriteChars chars) {
         this.position = startPosition;
-
         this.gameMap = gameMap;
-
-        this.upChar = upChar;
-        this.downChar = downChar;
-        this.leftChar = leftChar;
-        this.rightChar = rightChar;
-
+        this.chars = chars;
         this.direction = Direction.UP;
     }
 
@@ -58,26 +53,7 @@ public class TextSpritePlayer implements TextSprite {
 
     @Override
     public char AsChar() {
-        char c;
-
-        switch (this.direction) {
-            case UP:
-                c = this.upChar;
-                break;
-            case DOWN:
-                c = this.downChar;
-                break;
-            case LEFT:
-                c = this.leftChar;
-                break;
-            case RIGHT:
-                c = this.rightChar;
-                break;
-            default:
-                c = this.upChar;
-        }
-
-        return c;
+        return this.chars.Char(this.direction);
     }
 
 
