@@ -37,15 +37,6 @@ public class GameMap {
         return Helper.ReadTextFile(mapPath);
     }
 
-<<<<<<< HEAD
-    public int Rows() {
-       return 0; 
-    }
-    
-    public enum BlockType{
-        WALL, CORRIDOR
-    }
-=======
     private static char[][] GenerateMap(String mapString) throws Exception {
 
         String[] rowStrings = mapString.split("\n");
@@ -75,5 +66,4 @@ public class GameMap {
         WALL, CORRIDOR
     }
 
->>>>>>> Generate-GameMap-Array
 }
