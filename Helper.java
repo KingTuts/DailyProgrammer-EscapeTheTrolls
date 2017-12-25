@@ -108,6 +108,21 @@ public final class Helper {
         return charArr2D;
     }
 
+    /**
+     * Assumes rows are split by \n and columns are split by nothing
+     */
+    public static char[][] StringToChar2D(String s) {
+        char[][] charArr2D;
+        String[] sArr = s.split("\n");
+        charArr2D = new char[sArr.length][1];
+
+        for (int i = 0; i < sArr.length; i++) {
+            charArr2D[i] = sArr[i].toCharArray();
+        }
+
+        return charArr2D;
+    }
+
     public enum Direction {
         UP, DOWN, LEFT, RIGHT
     }
