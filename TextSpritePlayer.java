@@ -12,7 +12,7 @@ public class TextSpritePlayer implements TextSprite {
         this.position = startPosition;
         this.gameMap = gameMap;
         this.chars = chars;
-        this.direction = Direction.UP;
+        this.direction = Helper.Direction.UP;
     }
 
     @Override
