@@ -2,11 +2,11 @@
  * TextSprite
  */
 public interface TextSprite {
-    public int XPos();
-    public int YPOs();
+    public Position GetPosition();
     public Helper.Direction Direction();
     public void SetDirection(Helper.Direction direction);
-    public void Advance();
+    public void Advance(Helper.Direction direction);
+    public char AsChar();
 
     public enum Actions{
         MOVE, MOVEBLOCK

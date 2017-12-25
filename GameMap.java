@@ -5,14 +5,9 @@ import java.io.IOException;
  */
 public class GameMap {
     private String mapString;
-<<<<<<< HEAD
-    final private int ColummWidth = 4;
-    final private String newln = "\n";
-=======
     public static final char corridorChar = ' ';
     public static final char wallChar = '#';
     private char[][] map;
->>>>>>> Generate-GameMap-Array
 
     public GameMap(String mapFilePath) throws IOException, Exception {
         this.mapString = GetMapString(mapFilePath);
@@ -42,15 +37,6 @@ public class GameMap {
         return Helper.ReadTextFile(mapPath);
     }
 
-<<<<<<< HEAD
-    public int Rows() {
-       return 0; 
-    }
-    
-    public enum BlockType{
-        WALL, CORRIDOR
-    }
-=======
     private static char[][] GenerateMap(String mapString) throws Exception {
 
         String[] rowStrings = mapString.split("\n");
@@ -76,9 +62,27 @@ public class GameMap {
         return map;
     }
 
+
+    public boolean ValidSpritePosition(Position position) throws Exception{
+        int col = position.X();
+        int row = position.Y();
+        
+        if (col < 0 || col >= this.Columns()) {
+            throw new Exception("Position out of map bounds. Position.x must be between 0 and " + this.Columns() +". Position.x = " + col);
+        }
+        if (row < 0 || row >= this.Rows()) {
+            throw new Exception("Position out of map bounds. Position.y must be between 0 and " + this.Rows() +". Position.y = " + row);
+        }
+
+        if (this.map[row][col] == corridorChar) {
+            return true;
+        }
+
+        return false;
+    }
+
     public enum BlockType {
         WALL, CORRIDOR
     }
 
->>>>>>> Generate-GameMap-Array
 }
