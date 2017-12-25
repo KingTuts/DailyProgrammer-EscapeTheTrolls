@@ -14,9 +14,10 @@ public class EscapeTheTrolls {
                 mapWithSprites = AddSpriteToMap(mapWithSprites, sCont.Sprite());
             }
 
-            display.DisplayText(Helper.CharArr2DToString(mapWithSprites, "", "\n"));            
+            display.DisplayText(Helper.CharArr2DToString(mapWithSprites, "", "\n"));
         }
     }
+
     /**
      * Will modify map
      */
@@ -24,25 +25,39 @@ public class EscapeTheTrolls {
         return Helper.OverwriteCharArray2D(map, sprite.GetPosition(), sprite.AsChar());
     }
 
-    public static SpriteController[] generateSpriteControllers(int numTrolls) {
-        SpriteController[] sControllers = new SpriteController[1];
+    public static SpriteController[] generateSpriteControllers(int numTrolls, Position startPosition, GameMap gameMap,
+            TextSpriteChars textSpriteChars) {
+        SpriteController[] sControllers = new SpriteController[1]; // + numTrolls
 
-        sControllers[0] = new SpriteControllerPlayer(new TextSpritePlayer(startPosition, gameMap, upChar, downChar, leftChar, rightChar));
-
+        sControllers[0] = new SpriteControllerPlayer(new TextSpritePlayer(startPosition, gameMap, textSpriteChars));
 
         return sControllers;
     }
 
     public static void main(String[] args) {
+        final int numTrolls = 0;
         final String mapPathString = "res/maps/map.txt";
+
+        TextSpriteChars textSpriteChars;
+        Position startPositionPlayer;
         GameMap gameMap;
-        TextDisplay display = new TextDisplay();
+        TextDisplay display;
+        SpriteController[] sControllers;
 
         try {
+            textSpriteChars = new TextSpriteChars('^', 'v', '<', '>');
+            startPositionPlayer = new Position(1, 1);
             gameMap = new GameMap(mapPathString);
-            display.DisplayText(gameMap.MapString());
+            display = new TextDisplay();
+
+            sControllers = generateSpriteControllers(numTrolls, startPositionPlayer, gameMap, textSpriteChars);
+
+            GameRunner(display, gameMap, sControllers);
+
         } catch (IOException e) {
-            System.out.println("Issue with map string:\n\t" + mapPathString);
+            System.err.println("Issue with map string:\n\t" + mapPathString);
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
         }
 
     }
