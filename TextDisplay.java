@@ -3,11 +3,12 @@
  */
 public class TextDisplay {
 
-    public TextDisplay(){
+    public TextDisplay() {
 
     }
 
-    public void DisplayText(String textToDisplay) {
+    public void SetDisplay(String textToDisplay) {
         System.out.println(textToDisplay);
     }
+
 }
