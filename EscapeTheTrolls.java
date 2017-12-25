@@ -6,22 +6,50 @@ import java.io.IOException;
 public class EscapeTheTrolls {
     public static void GameRunner(TextDisplay display, GameMap gameMap, SpriteController[] sControllers) {
         char[][] mapWithSprites;
-        while (true) {
-            mapWithSprites = gameMap.Map();
 
-            for (SpriteController sCont : sControllers) {
-                sCont.TakeTurn();
-                mapWithSprites = AddSpriteToMap(mapWithSprites, sCont.Sprite());
+        // gameWhileLoop:
+        while (true) {
+            // mapWithSprites = gameMap.Map();
+            
+            RunSpriteTurns(sControllers);
+            try {
+                mapWithSprites = UpdateMapWithSprites(gameMap.Map(), SpritesFromControllers(sControllers));   
+            } catch (Exception e) {
+                System.err.println(e.getMessage());
+                break;
             }
 
-            display.DisplayText(Helper.CharArr2DToString(mapWithSprites, "", "\n"));
+            display.SetDisplay(Helper.CharArr2DToString(mapWithSprites, "", "\n"));            
         }
+    }
+
+    public static void RunSpriteTurns(SpriteController[] sControllers) {
+        for (SpriteController sController : sControllers) {
+            sController.TakeTurn();
+        }
+    }
+
+    public static char[][] UpdateMapWithSprites(char[][] map, TextSprite[] sprites) throws Exception {
+        for (TextSprite sprite : sprites) {
+            map = AddSpriteToMap(map, sprite);
+        }
+        return map;
+    }
+
+    public static TextSprite[] SpritesFromControllers(SpriteController[] sControllers) {
+        TextSprite[] tSprites = new TextSprite[sControllers.length];
+
+        for(int i = 0; i < sControllers.length; i++){
+            tSprites[i] = sControllers[i].Sprite();
+        }
+
+        return tSprites;
     }
 
     /**
      * Will modify map
      */
-    public static char[][] AddSpriteToMap(char[][] map, TextSprite sprite) {
+    public static char[][] AddSpriteToMap(char[][] map, TextSprite sprite) throws Exception {
         return Helper.OverwriteCharArray2D(map, sprite.GetPosition(), sprite.AsChar());
     }
 
