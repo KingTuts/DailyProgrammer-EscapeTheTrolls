@@ -83,7 +83,7 @@ public final class Helper {
         return b.toString();
     }
 
-    public static Strin CharArr2DToString(char[][] charArr2D, String colJoinStr, String rowJoinStr) {
+    public static String CharArr2DToString(char[][] charArr2D, String colJoinStr, String rowJoinStr) {
         String[] rows = new String[charArr2D.length];
 
         for (int row = 0; row < rows.length; row++) {
