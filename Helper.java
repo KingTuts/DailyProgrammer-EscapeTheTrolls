@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Arrays;
 
 /**
  * Helper
@@ -106,6 +107,35 @@ public final class Helper {
         charArr2D[pos.Y()][pos.X()] = c;
 
         return charArr2D;
+    }
+
+    /**
+     * Assumes rows are split by \n and columns are split by nothing
+     */
+    public static char[][] StringToChar2D(String s) {
+        char[][] charArr2D;
+        String[] sArr = s.split("\n");
+        charArr2D = new char[sArr.length][1];
+
+        for (int i = 0; i < sArr.length; i++) {
+            charArr2D[i] = sArr[i].toCharArray();
+        }
+
+        return charArr2D;
+    }
+
+    public static String FilterFromString(String s, String toFilter) {
+        return StringArrayJoin(s.split(toFilter));
+    }
+
+    public static String StringArrayJoin(String[] arr){
+        StringBuilder sb = new StringBuilder();
+        
+        for (String s : arr) {
+            sb.append(s);
+        }
+
+        return sb.toString();
     }
 
     public enum Direction {
