@@ -5,13 +5,10 @@ import java.io.IOException;
  */
 public class EscapeTheTrolls {
     public static void GameRunner(TextDisplay display, GameMap gameMap, SpriteController[] sControllers) {
-        char[][] mapWithSprites;
-
         // gameWhileLoop:
-        while (true) {
-            // mapWithSprites = gameMap.Map();
-            
+        while (true) {            
             RunSpriteTurns(sControllers);
+
             try {
                 mapWithSprites = UpdateMapWithSprites(gameMap.Map(), SpritesFromControllers(sControllers));   
             } catch (Exception e) {
