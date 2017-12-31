@@ -7,10 +7,14 @@ public class GameMap {
     private String mapString;
     public static final char corridorChar = ' ';
     public static final char wallChar = '#';
+    public static final char newline = '\n';
+    public static final char carriageReturn = '\r';
+    public static final char targetChar = 'X';
+
     private char[][] map;
 
     public GameMap(String mapFilePath) throws IOException, Exception {
-        this.mapString = GetMapString(mapFilePath);
+        this.mapString = FilterMapString(GetMapString(mapFilePath));
         this.map = GenerateMap(this.mapString);
     }
 
@@ -37,29 +41,65 @@ public class GameMap {
         return Helper.ReadTextFile(mapPath);
     }
 
-    private static char[][] GenerateMap(String mapString) throws Exception {
+    public static String FilterMapString(String mapString) {
+        return Helper.FilterFromString(mapString, Character.toString(carriageReturn));
+    }
 
-        String[] rowStrings = mapString.split("\n");
+    private char[][] GenerateMap(String mapString) throws Exception {
+        char[][] map = Helper.StringToChar2D(mapString);
 
-        char[][] map = new char[rowStrings.length][(rowStrings[0]).length()];
-
-        for (int row = 0; row < map.length; row++) {
-            for (int col = 0; col < map[0].length; col++) {
-                switch (rowStrings[row].charAt(col)) {
-                case wallChar:
-                    map[row][col] = wallChar;
-                    break;
-                case corridorChar:
-                    map[row][col] = wallChar;
-                    break;
-                default:
-                    throw new Exception("Invalid map char:" + rowStrings[row].charAt(col) + "\n\tValid map chars: "
-                            + wallChar + ", " + corridorChar);
+        ValidateMapReturn vMapReturn = ValidateMap(map);
+        if (!vMapReturn.IsValid()) {
+            throw new Exception("Invalid char: " + vMapReturn.GetChar());
+        }
+        return map;
+    }
+    
+    public ValidateMapReturn ValidateMap(char[][] map) {
+        for (char[] row : map) {
+            for (char c : row) {
+                if(!IsValidMapChar(c)){
+                    return new ValidateMapReturn(false, c);
                 }
             }
         }
 
-        return map;
+        return new ValidateMapReturn(true, ' ');
+    }
+
+    /**
+     * ValidateMapReturn
+     */
+    private class ValidateMapReturn {
+        private boolean isValid;
+        private char c;
+
+        public ValidateMapReturn(boolean isValid, char c){
+            this.isValid = isValid;
+            this.c = c;
+        }
+
+        public boolean IsValid() {
+            return this.isValid;
+        }
+
+        public char GetChar(){
+            return this.c;
+        }
+    }
+
+    public static boolean IsValidMapChar(char mapChar){
+        if (mapChar == corridorChar) {
+            return true;
+        }
+        if(mapChar == wallChar){
+            return true;
+        }
+        if (mapChar == targetChar) {
+            return true;
+        }
+
+        return false;
     }
 
 
@@ -82,7 +122,7 @@ public class GameMap {
     }
 
     public enum BlockType {
-        WALL, CORRIDOR
+        WALL, CORRIDOR, TARGET
     }
 
 }
