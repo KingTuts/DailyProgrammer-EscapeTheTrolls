@@ -100,7 +100,7 @@ public final class Helper {
      */
 
     public static char[][] OverwriteCharArray2D(char[][] charArr2D, Position pos, char c) throws Exception {
-        if (PositionIn2DArray(charArr2D, pos)) {
+        if (!(PositionIn2DArray(charArr2D, pos))) {
             throw new Exception("pos out of bounds for charArr2D");
         }
 
