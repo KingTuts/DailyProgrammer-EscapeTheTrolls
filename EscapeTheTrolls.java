@@ -5,7 +5,9 @@ import java.io.IOException;
  */
 public class EscapeTheTrolls {
     public static void GameRunner(TextDisplay display, GameMap gameMap, SpriteController[] sControllers) {
-        // gameWhileLoop:
+        char[][] mapWithSprites;
+
+        // game While Loop:
         while (true) {            
             RunSpriteTurns(sControllers);
 
