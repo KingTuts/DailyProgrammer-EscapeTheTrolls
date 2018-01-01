@@ -1,8 +1,9 @@
-import java.awt.event.KeyListener;
+import javax.swing.Action;
+import javax.swing.KeyStroke;
 
 /**
  * KeyPressedEmitter
  */
 public interface KeyPressedEmitter {
-    public void RegisterKeyListener(KeyListener kl);
+    public void RegisterKeyBinding(KeyStroke keyStroke, String keyString, Action action);
 }
