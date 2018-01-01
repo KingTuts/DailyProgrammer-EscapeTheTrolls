@@ -1,10 +1,15 @@
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyListener;
+import java.util.concurrent.Callable;
 
+import javax.swing.AbstractAction;
+import javax.swing.Action;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.KeyStroke;
 
 /**
  * TextDisplay
@@ -38,10 +43,17 @@ public class TextDisplay implements KeyPressedEmitter {
         this.textArea.setText(textToDisplay);
     }
 
+    @Override
+    public void RegisterKeyBinding(KeyStroke keyStroke, String keyString, Callable<Void> func){
+        this.textArea.getInputMap().put(keyStroke, keyString);
+        this.textArea.getActionMap().put(keyString, new AbstractAction(){
+            public static final long serialVersionUID = 1l;
 
-    public void RegisterKeyListener(KeyListener kl){
-        jFrame.addKeyListener(kl);
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                func.call();
+            }
+        });
     }
-
 
 }
