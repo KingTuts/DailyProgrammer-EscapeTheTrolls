@@ -64,6 +64,7 @@ public class EscapeTheTrolls {
     public static void main(String[] args) {
         final int numTrolls = 0;
         final String mapPathString = "res/maps/map.txt";
+        final String gameTitle = "EscapeTheTrolls";
 
         TextSpriteChars textSpriteChars;
         Position startPositionPlayer;
@@ -75,7 +76,7 @@ public class EscapeTheTrolls {
             textSpriteChars = new TextSpriteChars('^', 'v', '<', '>');
             startPositionPlayer = new Position(1, 1);
             gameMap = new GameMap(mapPathString);
-            display = new TextDisplay();
+            display = new TextDisplay(gameTitle, gameMap.Rows(), gameMap.Columns());
 
             sControllers = generateSpriteControllers(numTrolls, startPositionPlayer, gameMap, textSpriteChars);
 
