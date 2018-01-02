@@ -1,5 +1,4 @@
-import java.awt.event.KeyEvent;
-import java.util.ArrayList;
+import javax.swing.KeyStroke;
 
 /**
  * SpriteControllerPlayer implements SpriteController
@@ -7,22 +6,48 @@ import java.util.ArrayList;
 public class SpriteControllerPlayer implements SpriteController {
     private TextSprite sprite;
     private KeyPressedEmitter kpEmitter;
-    private List<TextSpriteActions> actionQueue;
+    private Helper.Direction direction;
+    private static final long sleepTimeMillis = 200;
 
     public SpriteControllerPlayer(TextSprite sprite, KeyPressedEmitter kpEmitter) {
         this.sprite = sprite;
         this.kpEmitter = kpEmitter;
-        this.actionQueue = new ArrayList<TextSpriteActions>();
-
+        this.direction = null;
 
         // Register key bindings
-        this.kpEmitter.RegisterKeyBinding(keyStroke, keyString, func);
+        this.kpEmitter.RegisterKeyBinding(KeyStroke.getKeyStroke("released W"), "upKey",
+                () -> this.direction = Helper.Direction.UP);
+        this.kpEmitter.RegisterKeyBinding(KeyStroke.getKeyStroke("released S"), "downKey",
+                () -> this.direction = Helper.Direction.DOWN);
+        this.kpEmitter.RegisterKeyBinding(KeyStroke.getKeyStroke("released A"), "leftKey",
+                () -> this.direction = Helper.Direction.LEFT);
+        this.kpEmitter.RegisterKeyBinding(KeyStroke.getKeyStroke("released D"), "rightKey",
+                () -> this.direction = Helper.Direction.RIGHT);
 
     }
 
     @Override
     public void TakeTurn() {
-        // TODO: Add blocking key listeners here
+        boolean keyPressed = false;
+
+        while (!keyPressed) {
+            keyPressed = !(Helper.IsNull(keyPressed));
+            if (keyPressed) {
+                ExecuteTurn();
+                this.direction = null;
+            } else {
+                Thread.sleep(sleepTimeMillis);
+            }
+
+        }
+    }
+
+    private void ExecuteTurn() {
+        if (this.direction == this.sprite.Direction()) {
+            this.sprite.Advance(this.direction);
+        } else {
+            this.sprite.SetDirection(this.direction);
+        }
     }
 
     @Override
@@ -30,9 +55,17 @@ public class SpriteControllerPlayer implements SpriteController {
         return this.sprite;
     }
 
+    // private void KeyPressed(Helper.Direction direction) {
+    //     if (direction == this.sprite.Direction()) {
+    //         //move in direction
+    //         this.sprite.Advance(direction);
+    //     } else {
+    //         //turn sprite
+    //         this.sprite.SetDirection(direction);
+    //     }
+    // }
 
-
-    private enum TextSpriteActions {
-        TURN_UP, TURN_DOWN, TURN_LEFT, TURN_RIGHT, MOVE_UP, MOVE_DOWN, MOVE_LEFT, MOVE_RIGHT
-    }
+    // private enum TextSpriteActions {
+    //     TURN_UP, TURN_DOWN, TURN_LEFT, TURN_RIGHT, MOVE_UP, MOVE_DOWN, MOVE_LEFT, MOVE_RIGHT
+    // }
 }
