@@ -142,7 +142,7 @@ public final class Helper {
         UP, DOWN, LEFT, RIGHT
     }
 
-    public static boolean IsNull(T o) {
+    public static boolean IsNull(Object o) {
         return o == null;
     }
 }
