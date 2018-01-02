@@ -44,14 +44,14 @@ public class TextDisplay implements KeyPressedEmitter {
     }
 
     @Override
-    public void RegisterKeyBinding(KeyStroke keyStroke, String keyString, Callable<Void> func){
+    public void RegisterKeyBinding(KeyStroke keyStroke, String keyString, VoidFunc func){
         this.textArea.getInputMap().put(keyStroke, keyString);
         this.textArea.getActionMap().put(keyString, new AbstractAction(){
             public static final long serialVersionUID = 1l;
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                func.call();
+                func.Call();
             }
         });
     }
