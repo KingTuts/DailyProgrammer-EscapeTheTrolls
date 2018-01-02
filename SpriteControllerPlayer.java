@@ -7,7 +7,7 @@ public class SpriteControllerPlayer implements SpriteController {
     private TextSprite sprite;
     private KeyPressedEmitter kpEmitter;
     private Helper.Direction direction;
-    private static final long sleepTimeMillis = 200;
+    private static final long sleepTimeMillis = 50;
 
     public SpriteControllerPlayer(TextSprite sprite, KeyPressedEmitter kpEmitter) {
         this.sprite = sprite;
