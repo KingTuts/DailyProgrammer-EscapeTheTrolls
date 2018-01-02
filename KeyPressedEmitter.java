@@ -1,4 +1,3 @@
-import javax.swing.Action;
 import javax.swing.KeyStroke;
 
 /**
