@@ -8,17 +8,17 @@ public class EscapeTheTrolls {
         char[][] mapWithSprites;
 
         // game While Loop:
-        while (true) {            
+        while (true) {
             RunSpriteTurns(sControllers);
 
             try {
-                mapWithSprites = UpdateMapWithSprites(gameMap.Map(), SpritesFromControllers(sControllers));   
+                mapWithSprites = UpdateMapWithSprites(gameMap.Map(), SpritesFromControllers(sControllers));
             } catch (Exception e) {
                 System.err.println(e.getMessage());
                 break;
             }
 
-            display.SetDisplay(Helper.CharArr2DToString(mapWithSprites, "", "\n"));            
+            display.SetDisplay(Helper.CharArr2DToString(mapWithSprites, "", "\n"));
         }
     }
 
@@ -38,7 +38,7 @@ public class EscapeTheTrolls {
     public static TextSprite[] SpritesFromControllers(SpriteController[] sControllers) {
         TextSprite[] tSprites = new TextSprite[sControllers.length];
 
-        for(int i = 0; i < sControllers.length; i++){
+        for (int i = 0; i < sControllers.length; i++) {
             tSprites[i] = sControllers[i].Sprite();
         }
 
@@ -53,10 +53,10 @@ public class EscapeTheTrolls {
     }
 
     public static SpriteController[] generateSpriteControllers(int numTrolls, Position startPosition, GameMap gameMap,
-            TextSpriteChars textSpriteChars) {
+            TextSpriteChars textSpriteChars, KeyPressedEmitter emitter) {
         SpriteController[] sControllers = new SpriteController[1]; // + numTrolls
 
-        sControllers[0] = new SpriteControllerPlayer(new TextSpritePlayer(startPosition, gameMap, textSpriteChars));
+        sControllers[0] = new SpriteControllerPlayer(new TextSpritePlayer(startPosition, gameMap, textSpriteChars), emitter);
 
         return sControllers;
     }
@@ -78,7 +78,7 @@ public class EscapeTheTrolls {
             gameMap = new GameMap(mapPathString);
             display = new TextDisplay(gameTitle, gameMap.Rows(), gameMap.Columns());
 
-            sControllers = generateSpriteControllers(numTrolls, startPositionPlayer, gameMap, textSpriteChars);
+            sControllers = generateSpriteControllers(numTrolls, startPositionPlayer, gameMap, textSpriteChars, display);
 
             GameRunner(display, gameMap, sControllers);
 
