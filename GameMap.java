@@ -5,6 +5,7 @@ import java.io.IOException;
  */
 public class GameMap {
     private String mapString;
+
     public static final char corridorChar = ' ';
     public static final char wallChar = '#';
     public static final char newline = '\n';
@@ -24,6 +25,7 @@ public class GameMap {
     public String MapString() {
         return this.mapString;
     }
+
 
     public char[][] Map(){
         return this.map;
