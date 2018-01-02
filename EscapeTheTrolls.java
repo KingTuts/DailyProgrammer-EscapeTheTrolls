@@ -56,7 +56,8 @@ public class EscapeTheTrolls {
             TextSpriteChars textSpriteChars, KeyPressedEmitter emitter) {
         SpriteController[] sControllers = new SpriteController[1]; // + numTrolls
 
-        sControllers[0] = new SpriteControllerPlayer(new TextSpritePlayer(startPosition, gameMap, textSpriteChars), emitter);
+        sControllers[0] = new SpriteControllerPlayer(new TextSpritePlayer(startPosition, gameMap, textSpriteChars),
+                emitter);
 
         return sControllers;
     }

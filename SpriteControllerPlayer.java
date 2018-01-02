@@ -31,7 +31,7 @@ public class SpriteControllerPlayer implements SpriteController {
         boolean keyPressed = false;
 
         while (!keyPressed) {
-            keyPressed = !(Helper.IsNull(keyPressed));
+            keyPressed = !(Helper.IsNull(direction));
             if (keyPressed) {
                 ExecuteTurn();
                 this.direction = null;
