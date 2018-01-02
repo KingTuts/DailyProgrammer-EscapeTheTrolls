@@ -36,7 +36,12 @@ public class SpriteControllerPlayer implements SpriteController {
                 ExecuteTurn();
                 this.direction = null;
             } else {
-                Thread.sleep(sleepTimeMillis);
+                try {
+                    Thread.sleep(sleepTimeMillis);
+                } catch (InterruptedException e) {
+                    System.err.println(e.getMessage());
+                    System.err.println(e.getStackTrace().toString());
+                }
             }
 
         }
