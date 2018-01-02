@@ -141,4 +141,8 @@ public final class Helper {
     public enum Direction {
         UP, DOWN, LEFT, RIGHT
     }
+
+    public static boolean IsNull(T o) {
+        return o == null;
+    }
 }
