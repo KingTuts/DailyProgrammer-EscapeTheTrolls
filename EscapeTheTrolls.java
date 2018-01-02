@@ -6,6 +6,7 @@ import java.io.IOException;
 public class EscapeTheTrolls {
     public static void GameRunner(TextDisplay display, GameMap gameMap, SpriteController[] sControllers) {
         char[][] mapWithSprites;
+        
 
         // game While Loop:
         while (true) {
@@ -60,6 +61,30 @@ public class EscapeTheTrolls {
                 emitter);
 
         return sControllers;
+    }
+
+    public VictoryCondition VictoryConditionMet(TextSprite[] sprites) {
+        for (TextSprite sprite : sprites) {
+            
+        }
+    }
+
+    public class VictoryCondition{
+        private boolean victory;
+        private TextSprite sprite;
+
+        public VictoryCondition(boolean victory, TextSprite sprite){
+            this.victory = victory;
+            this.sprite = sprite;
+        }
+
+        public boolean victory() {
+            return this.victory;
+        }
+
+        public TextSprite () {
+            return this.sprite;
+        }
     }
 
     public static void main(String[] args) {
