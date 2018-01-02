@@ -35,6 +35,13 @@ public class EscapeTheTrolls {
         return map;
     }
 
+    /**
+     * Will modify map
+     */
+    public static char[][] AddSpriteToMap(char[][] map, TextSprite sprite) throws Exception {
+        return Helper.OverwriteCharArray2D(map, sprite.GetPosition(), sprite.AsChar());
+    }
+
     public static TextSprite[] SpritesFromControllers(SpriteController[] sControllers) {
         TextSprite[] tSprites = new TextSprite[sControllers.length];
 
@@ -43,13 +50,6 @@ public class EscapeTheTrolls {
         }
 
         return tSprites;
-    }
-
-    /**
-     * Will modify map
-     */
-    public static char[][] AddSpriteToMap(char[][] map, TextSprite sprite) throws Exception {
-        return Helper.OverwriteCharArray2D(map, sprite.GetPosition(), sprite.AsChar());
     }
 
     public static SpriteController[] generateSpriteControllers(int numTrolls, Position startPosition, GameMap gameMap,
