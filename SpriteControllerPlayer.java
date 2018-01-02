@@ -59,18 +59,4 @@ public class SpriteControllerPlayer implements SpriteController {
     public TextSprite Sprite() {
         return this.sprite;
     }
-
-    // private void KeyPressed(Helper.Direction direction) {
-    //     if (direction == this.sprite.Direction()) {
-    //         //move in direction
-    //         this.sprite.Advance(direction);
-    //     } else {
-    //         //turn sprite
-    //         this.sprite.SetDirection(direction);
-    //     }
-    // }
-
-    // private enum TextSpriteActions {
-    //     TURN_UP, TURN_DOWN, TURN_LEFT, TURN_RIGHT, MOVE_UP, MOVE_DOWN, MOVE_LEFT, MOVE_RIGHT
-    // }
 }
