@@ -104,11 +104,22 @@ public final class Helper {
             throw new Exception("pos out of bounds for charArr2D");
         }
 
-        charArr2D[pos.Y()][pos.X()] = c;
+        char[][] newCharArr2D = CopyCharArr2D(charArr2D);
 
-        return charArr2D;
+
+        newCharArr2D[pos.Y()][pos.X()] = c;
+
+        return newCharArr2D;
     }
 
+    public static char[][] CopyCharArr2D(char[][] charArr2D) {
+        char[][] newCharArr2D;
+
+        newCharArr2D = StringToChar2D(CharArr2DToString(charArr2D, "", "\n"));
+
+        return newCharArr2D;
+    }
+    
     /**
      * Assumes rows are split by \n and columns are split by nothing
      */
