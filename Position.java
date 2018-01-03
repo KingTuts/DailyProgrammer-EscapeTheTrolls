@@ -17,4 +17,17 @@ public class Position {
     public int Y() {
         return this.y;
     }
+
+
+    public static boolean SamePosition(Position posA, Position posB) {
+        if (posA.X() != posB.X()) {
+            return false;
+        }
+
+        if (posA.Y() != posB.Y()) {
+            return false;
+        }
+        
+        return true;
+    }
 }
