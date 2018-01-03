@@ -5,6 +5,7 @@ import java.io.IOException;
  */
 public class GameMap {
     private String mapString;
+    private Position targetPosition;
 
     public static final char corridorChar = ' ';
     public static final char wallChar = '#';
@@ -17,6 +18,11 @@ public class GameMap {
     public GameMap(String mapFilePath) throws IOException, Exception {
         this.mapString = FilterMapString(GetMapString(mapFilePath));
         this.map = GenerateMap(this.mapString);
+        try {
+            this.targetPosition = GetTargetPosition(this.map, targetChar);
+        } catch (Exception e) {
+            throw new Exception("Map doesn't have target", e.getCause());
+        }
     }
 
     /**
@@ -25,7 +31,6 @@ public class GameMap {
     public String MapString() {
         return this.mapString;
     }
-
 
     public char[][] Map(){
         return this.map;
@@ -39,11 +44,38 @@ public class GameMap {
         return this.map[0].length;
     }
 
+    public boolean ValidSpritePosition(Position position) throws Exception{
+        int col = position.X();
+        int row = position.Y();
+        
+        if (col < 0 || col >= this.Columns()) {
+            throw new Exception("Position out of map bounds. Position.x must be between 0 and " + this.Columns() +". Position.x = " + col);
+        }
+        if (row < 0 || row >= this.Rows()) {
+            throw new Exception("Position out of map bounds. Position.y must be between 0 and " + this.Rows() +". Position.y = " + row);
+        }
+
+        if (this.map[row][col] == corridorChar) {
+            return true;
+        }
+
+        if (this.map[row][col] == targetChar) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public Position TargetPosition() {
+        return this.targetPosition;
+    }
+
+
     private static String GetMapString(String mapPath) throws IOException {
         return Helper.ReadTextFile(mapPath);
     }
 
-    public static String FilterMapString(String mapString) {
+    private static String FilterMapString(String mapString) {
         return Helper.FilterFromString(mapString, Character.toString(carriageReturn));
     }
 
@@ -57,7 +89,7 @@ public class GameMap {
         return map;
     }
     
-    public ValidateMapReturn ValidateMap(char[][] map) {
+    private ValidateMapReturn ValidateMap(char[][] map) {
         for (char[] row : map) {
             for (char c : row) {
                 if(!IsValidMapChar(c)){
@@ -67,6 +99,20 @@ public class GameMap {
         }
 
         return new ValidateMapReturn(true, ' ');
+    }
+
+    private static boolean IsValidMapChar(char mapChar){
+        if (mapChar == corridorChar) {
+            return true;
+        }
+        if(mapChar == wallChar){
+            return true;
+        }
+        if (mapChar == targetChar) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -90,37 +136,17 @@ public class GameMap {
         }
     }
 
-    public static boolean IsValidMapChar(char mapChar){
-        if (mapChar == corridorChar) {
-            return true;
-        }
-        if(mapChar == wallChar){
-            return true;
-        }
-        if (mapChar == targetChar) {
-            return true;
+    private Position GetTargetPosition(char[][] map, char targetChar) throws Exception {
+
+        for(int row = 0; row < map.length; row++){
+            for(int col = 0; col < map[row].length; col++){
+                if (map[row][col] == targetChar) {
+                    return new Position(row, col);
+                }
+            }
         }
 
-        return false;
-    }
-
-
-    public boolean ValidSpritePosition(Position position) throws Exception{
-        int col = position.X();
-        int row = position.Y();
-        
-        if (col < 0 || col >= this.Columns()) {
-            throw new Exception("Position out of map bounds. Position.x must be between 0 and " + this.Columns() +". Position.x = " + col);
-        }
-        if (row < 0 || row >= this.Rows()) {
-            throw new Exception("Position out of map bounds. Position.y must be between 0 and " + this.Rows() +". Position.y = " + row);
-        }
-
-        if (this.map[row][col] == corridorChar) {
-            return true;
-        }
-
-        return false;
+        throw new Exception("No targetChar found");
     }
 
     public enum BlockType {
