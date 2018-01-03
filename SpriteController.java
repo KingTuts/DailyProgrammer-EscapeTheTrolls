@@ -13,8 +13,4 @@ public interface SpriteController {
     public TextSprite Sprite();
 
     public VictoryState GetVictoryState();
-
-    public final enum VictoryState {
-        NO_VICTORY, PLAYER_VICTORY, TROLL_VICTORY
-    }
 }

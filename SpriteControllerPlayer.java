@@ -65,7 +65,7 @@ public class SpriteControllerPlayer implements SpriteController {
     }
 
     public VictoryState GetVictoryState() {
-        if (Position.SamePosition(this.sprite.GetPosition,this.gameMap.TargetPosition())) {
+        if (Position.SamePosition(this.sprite.GetPosition(),this.gameMap.TargetPosition())) {
             return VictoryState.PLAYER_VICTORY;
         }
 
