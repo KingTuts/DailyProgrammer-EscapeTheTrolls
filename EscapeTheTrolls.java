@@ -7,6 +7,8 @@ public class EscapeTheTrolls {
     public static void GameRunner(TextDisplay display, GameMap gameMap, SpriteController[] sControllers) {
         char[][] mapWithSprites;
         VictoryState state = VictoryState.NO_VICTORY;
+        
+        display.SetDisplay("Press one of 'WASD' to start");
 
         // game While Loop:
         while (state == VictoryState.NO_VICTORY) {
