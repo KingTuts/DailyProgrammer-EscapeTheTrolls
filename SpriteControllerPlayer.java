@@ -9,12 +9,14 @@ public class SpriteControllerPlayer implements SpriteController {
     private TextSprite sprite;
     private KeyPressedEmitter kpEmitter;
     private Helper.Direction direction;
+    private GameMap gameMap;
     private static final long sleepTimeMillis = 50;
 
-    public SpriteControllerPlayer(TextSprite sprite, KeyPressedEmitter kpEmitter) {
+    public SpriteControllerPlayer(TextSprite sprite, KeyPressedEmitter kpEmitter, GameMap gameMap) {
         this.sprite = sprite;
         this.kpEmitter = kpEmitter;
         this.direction = null;
+        this.gameMap = gameMap;
 
         // Register key bindings
         this.kpEmitter.RegisterKeyBinding(KeyStroke.getKeyStroke("released W"), "upKey",
@@ -63,6 +65,10 @@ public class SpriteControllerPlayer implements SpriteController {
     }
 
     public VictoryState GetVictoryState() {
+        if (Position.SamePosition(this.sprite.GetPosition,this.gameMap.TargetPosition())) {
+            return VictoryState.PLAYER_VICTORY;
+        }
+
         return VictoryState.NO_VICTORY;
     }
 }
