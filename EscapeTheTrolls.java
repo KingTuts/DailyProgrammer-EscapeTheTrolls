@@ -69,24 +69,6 @@ public class EscapeTheTrolls {
         }
     }
 
-    public class VictoryCondition{
-        private boolean victory;
-        private TextSprite sprite;
-
-        public VictoryCondition(boolean victory, TextSprite sprite){
-            this.victory = victory;
-            this.sprite = sprite;
-        }
-
-        public boolean victory() {
-            return this.victory;
-        }
-
-        public TextSprite () {
-            return this.sprite;
-        }
-    }
-
     public static void main(String[] args) {
         final int numTrolls = 0;
         final String mapPathString = "res/maps/map.txt";
