@@ -20,42 +20,40 @@ public final class Helper {
     }
 
     public static Position CalcNewPosition(Position oldPosition, Direction direction) {
-        int x = oldPosition.X();
-        int y = oldPosition.Y();
+        int col = oldPosition.Col();
+        int row = oldPosition.Row();
 
         switch (direction) { //top-left corner is 0,0. Y increases as you go down, x increases as you go right
         case UP:
-            y--;
+            row--;
             break;
         case DOWN:
-            y++;
+            row++;
             break;
         case LEFT:
-            x--;
+            col--;
             break;
         case RIGHT:
-            x++;
+            col++;
             break;
         }
 
-        return new Position(x, y);
+        return new Position(col, row);
     }
 
     public static boolean PositionIn2DArray(char[][] array2D, Position position) {
-        int row = position.Y();
-        int col = position.X();
 
-        if (row < 0) {
+        if (position.Row() < 0) {
             return false;
         }
-        if (row >= array2D.length) {
+        if (position.Row() >= array2D.length) {
             return false;
         }
 
-        if (col < 0) {
+        if (position.Col() < 0) {
             return false;
         }
-        if (col >= array2D[0].length) {
+        if (position.Col() >= array2D[0].length) {
             return false;
         }
 
@@ -107,7 +105,7 @@ public final class Helper {
         char[][] newCharArr2D = CopyCharArr2D(charArr2D);
 
 
-        newCharArr2D[pos.Y()][pos.X()] = c;
+        newCharArr2D[pos.Row()][pos.Col()] = c;
 
         return newCharArr2D;
     }

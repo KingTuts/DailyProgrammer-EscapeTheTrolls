@@ -6,9 +6,12 @@ import java.io.IOException;
 public class EscapeTheTrolls {
     public static void GameRunner(TextDisplay display, GameMap gameMap, SpriteController[] sControllers) {
         char[][] mapWithSprites;
+        VictoryState state = VictoryState.NO_VICTORY;
+        
+        display.SetDisplay("Press one of 'WASD' to start");
 
         // game While Loop:
-        while (true) {
+        while (state == VictoryState.NO_VICTORY) {
             RunSpriteTurns(sControllers);
 
             try {
@@ -17,9 +20,12 @@ public class EscapeTheTrolls {
                 System.err.println(e.getMessage());
                 break;
             }
-
             display.SetDisplay(Helper.CharArr2DToString(mapWithSprites, "", "\n"));
+
+            state = VictoryConditionMet(sControllers);
         }
+
+        display.SetDisplay(state.toString());
     }
 
     public static void RunSpriteTurns(SpriteController[] sControllers) {
@@ -57,9 +63,19 @@ public class EscapeTheTrolls {
         SpriteController[] sControllers = new SpriteController[1]; // + numTrolls
 
         sControllers[0] = new SpriteControllerPlayer(new TextSpritePlayer(startPosition, gameMap, textSpriteChars),
-                emitter);
+                emitter, gameMap);
 
         return sControllers;
+    }
+
+    public static VictoryState VictoryConditionMet(SpriteController[] controllers) {
+        for (SpriteController controller : controllers) {
+            if (controller.GetVictoryState() != VictoryState.NO_VICTORY) {
+                return controller.GetVictoryState();
+            }
+        }
+
+        return VictoryState.NO_VICTORY;
     }
 
     public static void main(String[] args) {
@@ -84,7 +100,7 @@ public class EscapeTheTrolls {
             GameRunner(display, gameMap, sControllers);
 
         } catch (IOException e) {
-            System.err.println("Issue with map string:\n\t" + mapPathString);
+            System.err.println("Issue with map string: " + mapPathString);
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
