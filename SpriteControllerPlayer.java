@@ -1,5 +1,7 @@
 import javax.swing.KeyStroke;
 
+import SpriteController.VictoryState;
+
 /**
  * SpriteControllerPlayer implements SpriteController
  */
@@ -58,5 +60,9 @@ public class SpriteControllerPlayer implements SpriteController {
     @Override
     public TextSprite Sprite() {
         return this.sprite;
+    }
+
+    public VictoryState GetVictoryState() {
+        return VictoryState.NO_VICTORY;
     }
 }
