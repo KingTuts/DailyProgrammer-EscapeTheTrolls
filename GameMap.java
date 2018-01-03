@@ -45,8 +45,8 @@ public class GameMap {
     }
 
     public boolean ValidSpritePosition(Position position) throws Exception{
-        int col = position.X();
-        int row = position.Y();
+        int col = position.Col();
+        int row = position.Row();
         
         if (col < 0 || col >= this.Columns()) {
             throw new Exception("Position out of map bounds. Position.x must be between 0 and " + this.Columns() +". Position.x = " + col);
@@ -141,7 +141,7 @@ public class GameMap {
         for(int row = 0; row < map.length; row++){
             for(int col = 0; col < map[row].length; col++){
                 if (map[row][col] == targetChar) {
-                    return new Position(row, col);
+                    return new Position(col, row);
                 }
             }
         }
